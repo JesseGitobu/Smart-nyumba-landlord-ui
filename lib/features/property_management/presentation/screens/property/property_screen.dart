@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:smart_nyumba_landlord/features/property_management/presentation/screens/Apartment_registration/apartment_registration_screen.dart';
 
 class PropertyScreen extends StatefulWidget {
   const PropertyScreen({super.key});
@@ -189,6 +190,14 @@ class _PropertyScreenState extends State<PropertyScreen> {
                             padding:
                                 const EdgeInsets.only(right: 10, bottom: 10),
                             child: InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const ApartmentRegistrationScreen()),
+                                );
+                              },
                               child: Container(
                                 height: 35,
                                 width: 130,
