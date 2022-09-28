@@ -81,6 +81,8 @@ flutter:
   fonts:
   - family: Roboto Serif
     fonts:
+      - asset: fonts/RobotoSerif-SemiBold.ttf
+        weight: 400
       - asset: fonts/RobotoSerif-Bold.ttf
         weight: 700
   - family: Roboto Condensed

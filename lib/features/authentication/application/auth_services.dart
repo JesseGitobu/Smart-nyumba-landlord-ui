@@ -8,7 +8,7 @@ import 'package:smart_nyumba_landlord/features/authentication/domain/models/user
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
-String uri = '';
+String uri = 'http://192.168.131.49:4000';
 
 class AuthService {
   void signUpUser(

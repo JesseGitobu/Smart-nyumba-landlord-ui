@@ -4,6 +4,7 @@ import 'package:smart_nyumba_landlord/common_widgets/custom_button.dart';
 import 'package:smart_nyumba_landlord/constants/themes/app_theme.dart';
 import 'package:smart_nyumba_landlord/features/authentication/presentation/splash_screen/widgets/background_widget.dart';
 import 'package:smart_nyumba_landlord/features/authentication/presentation/landlord_log_in/screens/log_in_screen.dart';
+import 'package:smart_nyumba_landlord/features/property_management/presentation/screens/property/property_screen.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -78,7 +79,12 @@ class SplashScreen extends StatelessWidget {
             fontFamily: 'Roboto Condensed',
             fontSize: 24),
         gradiant: const [AppTheme.gold],
-        onTap: () {});
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const PropertyScreen()),
+          );
+        });
 
     return Scaffold(
       body: SingleChildScrollView(
