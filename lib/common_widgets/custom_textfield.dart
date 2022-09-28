@@ -1,5 +1,19 @@
 import 'package:flutter/material.dart';
 
+class Cua extends StatefulWidget {
+  const Cua({super.key});
+
+  @override
+  State<Cua> createState() => _CuaState();
+}
+
+class _CuaState extends State<Cua> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final FormFieldValidator<String> validator;
@@ -40,29 +54,26 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(vertical: 4),
-      child: TextFormField(
-          onChanged: onChanged,
-          onEditingComplete: onEditingCompleted,
-          autofocus: autofocus,
-          minLines: isMulti ? 4 : 1,
-          maxLines: isMulti ? null : 1,
-          onTap: onTap,
-          enabled: enabled,
-          readOnly: readOnly,
-          obscureText: obsecure,
-          keyboardType: keyboardType,
-          controller: controller,
-          decoration: InputDecoration(
-            errorText: errorText,
-            prefixIcon: prefix,
-            suffixIcon: suffix,
-            labelText: label,
-            hintStyle: hintStyle,
-            contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-          ),
-          validator: validator),
-    );
+    return TextFormField(
+        onChanged: onChanged,
+        onEditingComplete: onEditingCompleted,
+        autofocus: autofocus,
+        minLines: isMulti ? 4 : 1,
+        maxLines: isMulti ? null : 1,
+        onTap: onTap,
+        enabled: enabled,
+        readOnly: readOnly,
+        obscureText: obsecure,
+        keyboardType: keyboardType,
+        controller: controller,
+        decoration: InputDecoration(
+          errorText: errorText,
+          prefixIcon: prefix,
+          suffixIcon: suffix,
+          labelText: label,
+          hintStyle: hintStyle,
+          contentPadding: EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+        ),
+        validator: validator);
   }
 }

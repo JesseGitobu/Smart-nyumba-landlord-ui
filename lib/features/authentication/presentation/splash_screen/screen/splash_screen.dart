@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:smart_nyumba_landlord/common_widgets/custom_button.dart';
-import 'package:smart_nyumba_landlord/constants/themes/app_theme.dart';
+import 'package:smart_nyumba_landlord/features/authentication/presentation/splash_screen/screen/components/login_buttons.dart';
 import 'package:smart_nyumba_landlord/features/authentication/presentation/splash_screen/widgets/background_widget.dart';
-import 'package:smart_nyumba_landlord/features/authentication/presentation/landlord_log_in/screens/log_in_screen.dart';
-import 'package:smart_nyumba_landlord/features/property_management/presentation/screens/property/property_screen.dart';
+import 'package:smart_nyumba_landlord/constants/themes/app_theme.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -55,37 +53,6 @@ class SplashScreen extends StatelessWidget {
       ),
     );
 
-    Widget LoginLandLord = CustomButton(
-        title: "Landlord",
-        titleStyle: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w700,
-            decoration: TextDecoration.none,
-            fontFamily: 'Roboto Condensed',
-            fontSize: 24),
-        gradiant: const [AppTheme.gold],
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const LogInScreen()),
-          );
-        });
-    Widget LoginCaretaker = CustomButton(
-        title: "Caretaker",
-        titleStyle: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w700,
-            decoration: TextDecoration.none,
-            fontFamily: 'Roboto Condensed',
-            fontSize: 24),
-        gradiant: const [AppTheme.gold],
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const PropertyScreen()),
-          );
-        });
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Stack(
@@ -107,11 +74,15 @@ class SplashScreen extends StatelessWidget {
                   ),
                   SizedBox(
                       width: AppTheme.size(context).width * 0.6,
-                      child: LoginLandLord),
+                      child: LandlordLoginButton(
+                        key: key,
+                      )),
                   const SizedBox(height: AppTheme.elementSpacing),
                   SizedBox(
                       width: AppTheme.size(context).width * 0.6,
-                      child: LoginCaretaker),
+                      child: CaretakerLoginButton(
+                        key: key,
+                      )),
                 ],
               ),
             ),

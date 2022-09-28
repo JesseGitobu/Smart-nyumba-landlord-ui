@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:smart_nyumba_landlord/common_widgets/custom_button.dart';
+import 'package:smart_nyumba_landlord/features/authentication/presentation/landlord_log_in/screens/components/log_in_form.dart';
 import 'package:smart_nyumba_landlord/features/authentication/application/auth_services.dart';
-import 'package:smart_nyumba_landlord/features/authentication/presentation/landlord_sign_up/screens/sign_up_screen.dart';
+import 'package:smart_nyumba_landlord/features/authentication/presentation/landlord_log_in/screens/components/no_account.dart';
 import 'package:smart_nyumba_landlord/constants/themes/app_theme.dart';
 import 'package:smart_nyumba_landlord/features/authentication/presentation/splash_screen/widgets/background_widget.dart';
 
@@ -86,16 +86,6 @@ class _LogInScreenState extends State<LogInScreen> {
       ),
     );
 
-    Widget LoginButton = CustomButton(
-        title: "Confirm",
-        titleStyle: const TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w700,
-            decoration: TextDecoration.none,
-            fontFamily: 'Roboto Condensed',
-            fontSize: 24),
-        gradiant: const [AppTheme.gold],
-        onTap: () {});
     return Stack(children: [
       Background,
       Center(
@@ -112,211 +102,14 @@ class _LogInScreenState extends State<LogInScreen> {
             SizedBox(
               height: WIDTH / 15,
             ),
-            LoginForm(context),
-            Padding(
-              padding: const EdgeInsets.only(left: 10, top: 10),
-              child: Row(
-                children: [
-                  const Text(
-                    'Dont have an account?',
-                    style: TextStyle(
-                        color: Colors.black87,
-                        fontWeight: FontWeight.w700,
-                        decoration: TextDecoration.none,
-                        fontFamily: 'PT Serif',
-                        fontSize: 16),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const SignUpScreen()),
-                      );
-                    },
-                    child: const Text(
-                      'Register',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 212, 175, 5),
-                        fontWeight: FontWeight.w700,
-                        decoration: TextDecoration.none,
-                        fontFamily: 'PT Serif',
-                        fontSize: 18,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+            const LogInForm(),
+            const Padding(
+              padding: EdgeInsets.only(left: 10, top: 10),
+              child: DontHaveAnAccount(),
             ),
           ],
         ),
       ),
     ]);
-  }
-
-  Widget LoginForm(BuildContext context) {
-    Widget ForgotPassword = TextButton(
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const SignUpScreen()),
-        );
-      },
-      child: const Text(
-        'Forgot Password?',
-        style: TextStyle(
-          color: Color.fromARGB(255, 212, 175, 5),
-          fontWeight: FontWeight.w700,
-          decoration: TextDecoration.none,
-          fontFamily: 'PT Serif',
-          fontSize: 20,
-        ),
-      ),
-    );
-
-    Widget LoginButton = CustomButton(
-      title: "Confirm",
-      titleStyle: const TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.w700,
-          decoration: TextDecoration.none,
-          fontFamily: 'Roboto Condensed',
-          fontSize: 24),
-      gradiant: const [AppTheme.gold],
-      onTap: () {
-        // Validate returns true if the form is valid, or false otherwise.
-        if (_signInFormKey.currentState!.validate()) {
-          signInUser();
-        }
-        ;
-      },
-    );
-    return Container(
-        height: 390,
-        width: 300,
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(Radius.circular(15)),
-          color: Colors.white,
-        ),
-        child: Form(
-          key: _signInFormKey,
-          child: Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(top: 10),
-                child: Text(
-                  'Log In',
-                  style: TextStyle(
-                      color: Color.fromARGB(255, 212, 175, 5),
-                      fontWeight: FontWeight.w500,
-                      decoration: TextDecoration.none,
-                      fontFamily: 'Roboto Condensed',
-                      fontSize: 40),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30),
-                child: SizedBox(
-                  height: 60,
-                  width: 270,
-                  child: TextFormField(
-                    decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                        borderSide: BorderSide(
-                            color: Colors.black87,
-                            width: 2,
-                            style: BorderStyle.solid),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                        borderSide: BorderSide(
-                            color: Colors.black87,
-                            width: 2,
-                            style: BorderStyle.solid),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                        borderSide: BorderSide(
-                            color: Colors.redAccent,
-                            width: 2,
-                            style: BorderStyle.solid),
-                      ),
-                      border: InputBorder.none,
-                      prefixIcon: Icon(Icons.email_outlined),
-                      hintText: 'Enter your E-mail ',
-                      labelText: 'E-mail address',
-                      contentPadding:
-                          EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-                      fillColor: Colors.white,
-                    ),
-                    onSaved: (String? value) {},
-                    validator: (String? value) {
-                      if (value!.isEmpty) {
-                        return "Email Address cannot be empty";
-                      }
-                    },
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30),
-                child: SizedBox(
-                  height: 60,
-                  width: 270,
-                  child: TextFormField(
-                    obscureText: true,
-                    decoration: const InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                        borderSide: BorderSide(
-                            color: Colors.black87,
-                            width: 2,
-                            style: BorderStyle.solid),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                        borderSide: BorderSide(
-                            color: Colors.black87,
-                            width: 2,
-                            style: BorderStyle.solid),
-                      ),
-                      errorBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(30.0)),
-                        borderSide: BorderSide(
-                            color: Colors.redAccent,
-                            width: 2,
-                            style: BorderStyle.solid),
-                      ),
-                      border: InputBorder.none,
-                      prefixIcon: Icon(Icons.lock),
-                      hintText: 'Password',
-                      labelText: 'Password',
-                      contentPadding:
-                          EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
-                      fillColor: Colors.white,
-                    ),
-                    onSaved: (String? password) {},
-                    validator: (String? value) {
-                      if (value!.isEmpty) {
-                        return "Password cannot be empty";
-                      }
-                    },
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.fromLTRB(100, 10, 0, 0),
-                child: ForgotPassword,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: Center(
-                  child: SizedBox(height: 60, width: 150, child: LoginButton),
-                ),
-              )
-            ],
-          ),
-        ));
   }
 }
